@@ -13,23 +13,25 @@ namespace Collections
 
             SortedList<string, int> sortedList = new SortedList<string, int>();
 
-            sortedList.Add("bool", 1);
-            sortedList.Add("char", 1);
-            sortedList.Add("short", 2);
-            sortedList.Add("int", 2);
             sortedList.Add("long", 4);
-            sortedList.Add("float", 4);
             sortedList.Add("double", 8);
+            sortedList.Add("bool", 1);
+            sortedList.Add("short", 2);
+            sortedList.Add("char", 1);
+            sortedList.Add("int", 2);
+            sortedList.Add("float", 4);
 
             Console.WriteLine($"\nКількість елементів у колекції: {sortedList.Count}");
 
-            Console.WriteLine("\nЕлементи у прямому порядку:");
-            foreach (KeyValuePair<string, int> item in sortedList)
+            var sortedByValue = sortedList.OrderBy(item => item.Value).ToList();
+
+            Console.WriteLine("\nЕлементи, відсортовані за значеннями:");
+            foreach (var item in sortedByValue)
             {
                 Console.WriteLine($"{item.Key}: {item.Value}");
             }
 
-            var reverseList = new List<KeyValuePair<string, int>>(sortedList);
+            var reverseList = sortedByValue;
             reverseList.Reverse();
 
             Console.WriteLine("\nЕлементи у зворотному порядку:");
@@ -38,9 +40,9 @@ namespace Collections
                 Console.WriteLine($"{item.Key}: {item.Value}");
             }
 
-            sortedList.Clear();
+            sortedByValue.Clear();
             Console.WriteLine("\nКолекцію очищено.");
-            Console.WriteLine($"\nКількість елементів після очищення: {sortedList.Count}");
+            Console.WriteLine($"\nКількість елементів після очищення: {sortedByValue.Count}");
 
 
 
